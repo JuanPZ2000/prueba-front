@@ -6,6 +6,7 @@ import Suscribe from './pages/suscribe'
 import Cancel from './pages/cancel'
 import Graph from './pages/Graph'
 import Historical from './pages/historical'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 
