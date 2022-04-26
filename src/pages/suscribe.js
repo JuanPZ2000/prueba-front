@@ -1,8 +1,7 @@
 import React from 'react'
 import BasicSelect from '../components/dropdown/selectmui.js'
 import BasicTable from '../components/Table/table.js'
-import BasicTextFields from '../components/TextField/textfield.js'
-import BasicButtons from '../components/Button/button.js'
+
 
 const Suscribe = () => {
   return (

@@ -12,35 +12,28 @@ import { alertTitleClasses } from '@mui/material';
 
 export default function BasicSelect() {
   const [fund, setFund] = React.useState('');
-  const [value, setValue]= React.useState('');
 
 
   const handleChange = (event) => {
     setFund(event.target.value);
   };
-  const handleChangeValue = (event) => {
-    setValue(event.target.value);
-  };
   
   const statusCheck = (status) => {
     if (status == 200){
-      alert('Inversion realizada')
+      alert('Fondo cancelado, se le ha devuelto el dinero de su inversion')
     }
     if (status == 202){
-      alert('La inversion no cuenta con el monto minimo')
-    }
-    if (status == 201){
-      alert('No cuenta con fondos para realizar esta inversion al fondo '+ fund)
+      alert('Usted no tiene inversiones en este fondo')
     }
   }
 
   const clickButton = (event) => {
     var data = {
-      fund : fund, balance:value
+      fund : fund
     }
     console.log(data)
     try {
-      var promise = AppDataService.suscribeFund(data)
+      var promise = AppDataService.cancelFund(data)
       promise.then(result => statusCheck(result.status)).catch( err => alert("No se ha diligenciado un campo"));
     } catch (e) {
       console.error(
@@ -68,20 +61,12 @@ export default function BasicSelect() {
           <MenuItem value={"FPV_BTG_PACTUAL_DINAMICA"}>FPV_BTG_PACTUAL_DINAMICA</MenuItem>
         </Select>
       </FormControl>
-      <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-      >
-      <TextField id="inversion" label="Monto a invertir" variant="outlined" onChange={handleChangeValue} />
-      </Box>
+      <br></br>
+      <br></br>
       <Stack spacing={2} direction="row">
         <Button variant="contained" onClick={() => {
             clickButton();
-            }}>Invertir!
+            }}>Cancelar
         </Button>
       </Stack>
     </Box>
